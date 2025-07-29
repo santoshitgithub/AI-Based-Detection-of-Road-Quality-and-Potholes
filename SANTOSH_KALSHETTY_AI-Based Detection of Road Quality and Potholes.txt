@@ -1,0 +1,46 @@
+AI-Based Detection of Road Quality and Potholes
+ Table of Contents
+Introduction
+Dataset Structure
+Libraries Used
+Data Loading and Preprocessing
+YOLO Label Parsing
+Bounding Box Conversion
+Visualization
+Recommendations
+ Introduction
+This project aims to detect road surface defects such as potholes and cracks using computer vision. It uses images and label data (in YOLO format) to process, analyze, and visualize road defect locations.
+The dataset is structured in YOLO format:
+images/: contains road scene images (.jpg)
+labels/: contains YOLO-format annotation files (.txt)
+Each .txt file corresponds to an image and contains lines of:
+<class_id> <x_center> <y_center> <width> <height>
+All values are normalized (0–1 scale).
+Libraries Used:
+cv2: For reading and processing images.
+glob: For recursively listing image and label files.
+numpy, pandas: For numeric and structured data manipulation.
+matplotlib: For drawing and displaying images and bounding boxes.
+Data Loading and Preprocessing:
+Steps:
+Set image and label paths for training and validation sets.
+Load image file paths using glob.
+Read the first image to check its shape (640×640).
+Preview the number of images and label files for consistency.
+YOLO Label Parsing:
+The code:
+Parses the label files line by line.
+Extracts bounding box values: x_center, y_center, width, height.
+Converts these into top-left corner format (x_min, y_min) for visualization.
+Bounding Box Conversion:
+YOLO coordinates are normalized (0–1), so the code rescales them by multiplying by image height (scale = 640).
+ Visualization:
+To visualize bounding boxes on the images:
+The code loads a subset (30) of images and their labels.
+Plots them in a grid layout using matplotlib.
+Adds bounding boxes using Rectangle.
+Recommendations:
+ Ensure every image has a corresponding label file.
+Extend the code to support multiple boxes per image using dictionaries or lists of lists.
+Consider integrating with a training framework like YOLOv8 to go beyond visualization and do actual training/inference.
+
